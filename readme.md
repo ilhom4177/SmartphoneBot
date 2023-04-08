@@ -44,3 +44,11 @@ This is a bot for a smartphone shop. Using telegram bot API, it can be used to o
 - 📱 Model
 - 💵 Price
 - 📦 Add to cart
+
+## Database Requirements
+
+- [x] add user
+- [x] get all brands
+- [x] get products by brand
+- [x] add product to cart
+- [x] get cart
