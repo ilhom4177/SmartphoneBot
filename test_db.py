@@ -20,4 +20,8 @@ def test_clear_order():
     user_db = UserDb()
     user_db.clear_order('3214142')
 
-test_clear_order()
+def test_get_product():
+    product_db = ProductDB()
+    print(product_db.get_product('Apple', '1'))
+
+test_get_product()

@@ -48,3 +48,6 @@ class ProductDB:
         table = self.db.table(brand)
         return table.all()
     
+    def get_product(self, brand, product_id):
+        table = self.db.table(brand)
+        return table.get(doc_id=product_id)
