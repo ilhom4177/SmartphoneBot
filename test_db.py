@@ -12,4 +12,8 @@ def get_poroduct_by_brand():
     product_db = ProductDB()
     print(product_db.get_product_by_brand('Apple'))
 
-get_poroduct_by_brand()
+def test_add_order():
+    user_db = UserDb()
+    user_db.add_order('3214142', '1233231', 'Apple')
+
+test_add_order()
