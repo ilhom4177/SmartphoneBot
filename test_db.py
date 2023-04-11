@@ -14,7 +14,7 @@ def get_poroduct_by_brand():
 
 def test_add_order():
     user_db = UserDb()
-    user_db.add_order('3214142', '1233231', 'Apple')
+    user_db.add_order('4241241', '1233231', 'Apple')
 
 def test_clear_order():
     user_db = UserDb()
@@ -24,4 +24,4 @@ def test_get_product():
     product_db = ProductDB()
     print(product_db.get_product('Apple', '1'))
 
-test_get_product()
+test_add_order()

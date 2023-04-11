@@ -20,8 +20,8 @@ class UserDb:
         return self.user_table.insert(user)
     
     def add_order(self, chat_id: str, product_id: str, company: str):
-        if self.order_table.contains((self.query.chat_id == chat_id) & (self.query.company == company) & (self.query.product_id == product_id)):
-            order = self.order_table.get((self.query.chat_id == chat_id) & (self.query.company == company) & (self.query.product_id == product_id))
+        order = self.order_table.get((self.query.chat_id == chat_id) & (self.query.company == company) & (self.query.product_id == product_id))
+        if order:
             order['quantity'] += 1
             return self.order_table.update(order, (self.query.chat_id == chat_id) & (self.query.company == company) & (self.query.product_id == product_id))
         

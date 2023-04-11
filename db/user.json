@@ -19,5 +19,18 @@
             "last_name": "test"
         }
     },
-    "Order": {}
+    "Order": {
+        "1": {
+            "chat_id": "3214142",
+            "product_id": "1233231",
+            "company": "Apple",
+            "quantity": 14
+        },
+        "2": {
+            "chat_id": "4241241",
+            "product_id": "1233231",
+            "company": "Apple",
+            "quantity": 7
+        }
+    }
 }
