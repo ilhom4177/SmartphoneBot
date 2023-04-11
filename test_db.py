@@ -16,4 +16,8 @@ def test_add_order():
     user_db = UserDb()
     user_db.add_order('3214142', '1233231', 'Apple')
 
-test_add_order()
+def test_clear_order():
+    user_db = UserDb()
+    user_db.clear_order('3214142')
+
+test_clear_order()

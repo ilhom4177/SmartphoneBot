@@ -33,6 +33,9 @@ class UserDb:
         }
         return self.order_table.insert(order)
     
+    def clear_order(self, chat_id: str):
+        return self.order_table.remove(self.query.chat_id == chat_id)
+    
 class ProductDB:
     def __init__(self) -> None:
         self.db = TinyDB('db/product.json', indent=4)
