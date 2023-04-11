@@ -8,4 +8,8 @@ def test_get_brand():
     product_db = ProductDB()
     print(product_db.get_brand())
 
-test_get_brand()
+def get_poroduct_by_brand():
+    product_db = ProductDB()
+    print(product_db.get_product_by_brand('Apple'))
+
+get_poroduct_by_brand()

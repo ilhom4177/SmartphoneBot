@@ -23,10 +23,13 @@ class UserDb:
     
 class ProductDB:
     def __init__(self) -> None:
-        product_db = TinyDB('db/product.json', indent=4)
-        self.db = product_db
-        self.product_table = product_db.table('Product')
+        self.db = TinyDB('db/product.json', indent=4)
         self.query = Query()
     
     def get_brand(self):
         return self.db.tables()
+
+    def get_product_by_brand(self, brand):
+        table = self.db.table(brand)
+        return table.all()
+    
