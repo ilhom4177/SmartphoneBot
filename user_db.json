@@ -1,0 +1,22 @@
+{
+    "User": {
+        "1": {
+            "chat_id": "str",
+            "username": "str",
+            "first_name": "str",
+            "last_name": "str"
+        }
+    },
+    "Order": {
+        "1": {
+            "chat_id": "str",
+            "product_id": "str",
+            "company": "str"
+        },
+        "2": {
+            "chat_id": "str",
+            "product_id": "str",
+            "company": "str"
+        }
+    }
+}
