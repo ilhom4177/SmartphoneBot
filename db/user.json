@@ -5,6 +5,18 @@
             "username": "str",
             "first_name": "str",
             "last_name": "str"
+        },
+        "2": {
+            "chat_id": "123",
+            "first_name": "test",
+            "username": "test",
+            "last_name": "test"
+        },
+        "3": {
+            "chat_id": "4324132",
+            "first_name": "test",
+            "username": "test",
+            "last_name": "test"
         }
     },
     "Order": {
