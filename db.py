@@ -19,3 +19,14 @@ class UserDb:
             return self.user_table.update(user, self.query.chat_id == chat_id)
         return self.user_table.insert(user)
         
+
+    
+class ProductDB:
+    def __init__(self) -> None:
+        product_db = TinyDB('db/product.json', indent=4)
+        self.db = product_db
+        self.product_table = product_db.table('Product')
+        self.query = Query()
+    
+    def get_brand(self):
+        return self.db.tables()
