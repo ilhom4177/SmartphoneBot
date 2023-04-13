@@ -7,6 +7,7 @@ from telegram.ext import (
 )
 from main import (
     start,
+    about,
 )
 import os
 
@@ -20,6 +21,7 @@ def main():
     dispatcher = updater.dispatcher
     # handlers
     dispatcher.add_handler(CommandHandler("start", start))
+    dispatcher.add_handler(MessageHandler(Filters.text('📝 About'), about))
 
     # start bot
     updater.start_polling()
