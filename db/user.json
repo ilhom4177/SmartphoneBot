@@ -1,36 +1,17 @@
 {
     "User": {
-        "1": {
-            "chat_id": "str",
-            "username": "str",
-            "first_name": "str",
-            "last_name": "str"
+        "5": {
+            "chat_id": 2106134979,
+            "first_name": "ILHOMJAN",
+            "username": "ilhomjon_41_77",
+            "last_name": null
         },
-        "2": {
-            "chat_id": "123",
-            "first_name": "test",
-            "username": "test",
-            "last_name": "test"
-        },
-        "3": {
-            "chat_id": "4324132",
-            "first_name": "test",
-            "username": "test",
-            "last_name": "test"
+        "6": {
+            "chat_id": 5575549228,
+            "first_name": "codeacademy",
+            "username": "codeacademy_admin",
+            "last_name": null
         }
     },
-    "Order": {
-        "1": {
-            "chat_id": "3214142",
-            "product_id": "1233231",
-            "company": "Apple",
-            "quantity": 14
-        },
-        "2": {
-            "chat_id": "4241241",
-            "product_id": "1233231",
-            "company": "Apple",
-            "quantity": 7
-        }
-    }
+    "Order": {}
 }

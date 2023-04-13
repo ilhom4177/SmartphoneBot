@@ -16,8 +16,10 @@ class UserDb:
             'last_name': last_name
         }
         if self.user_table.contains(self.query.chat_id == chat_id):
-            return self.user_table.update(user, self.query.chat_id == chat_id)
-        return self.user_table.insert(user)
+            self.user_table.update(user, self.query.chat_id == chat_id)
+            return False
+        self.user_table.insert(user)
+        return True
     
     def add_order(self, chat_id: str, product_id: str, company: str):
         order = self.order_table.get((self.query.chat_id == chat_id) & (self.query.company == company) & (self.query.product_id == product_id))
