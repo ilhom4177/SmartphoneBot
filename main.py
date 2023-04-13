@@ -52,3 +52,24 @@ def contact(update: Update, context):
 
     # send message
     update.message.reply_text('Contact us:', reply_markup=InlineKeyboardMarkup(inline_keyboard))
+
+
+def contact_callback(update: Update, context):
+    '''Contact callback handler'''
+    # inline keyboard
+    inline_keyboard = [
+        [   
+            InlineKeyboardButton('📞Phone', callback_data='phone-number'), 
+            InlineKeyboardButton('📧Email', callback_data='email-address')
+        ],
+        [
+            InlineKeyboardButton('📍Location', callback_data='location'),
+            InlineKeyboardButton('🎯Address', callback_data='address')
+        ]
+    ]
+    # get callback data
+    query = update.callback_query
+    data = query.data
+    # send message
+    if data == 'phone-number':
+        query.edit_message_text(text='Phone number: 998 90 123 45 67')
