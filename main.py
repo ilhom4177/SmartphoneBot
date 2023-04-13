@@ -5,9 +5,10 @@ from telegram import (
     InlineKeyboardButton,
     InlineKeyboardMarkup,
 )
-from db import UserDb
+from db import UserDb, ProductDB
 
 userdb = UserDb()
+productdb = ProductDB()
 
 def start(update: Update, context):
     '''Start command handler'''
@@ -69,3 +70,18 @@ def contact_callback(update: Update, context):
         context.bot.send_location(chat_id=query.message.chat_id, latitude=41.311081, longitude=69.240562)
     elif data == 'address':
         query.edit_message_text(text='Address: Tashkent, Uzbekistan')
+
+
+def buy(update: Update, context):
+    '''Buy command handler'''
+    # get all brands from db
+    brands = productdb.get_brand()
+    # menu inline menu
+    inline_keyboard = []
+    for brand in brands:
+        inline_keyboard.append([InlineKeyboardButton(text=brand, callback_data=f'brand:{brand}')])
+    
+    # close button
+    inline_keyboard.append([InlineKeyboardButton('❌ Close', callback_data='close')])
+    # send message
+    update.message.reply_text('Choose a brand:', reply_markup=InlineKeyboardMarkup(inline_keyboard))
