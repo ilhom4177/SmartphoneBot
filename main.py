@@ -1,5 +1,7 @@
 from telegram import (
     Update,
+    ReplyKeyboardMarkup,
+    KeyboardButton,
 )
 from db import UserDb
 
@@ -14,8 +16,13 @@ def start(update: Update, context):
     username = update.message.chat.username
     # add user to db
     result = userdb.add_user(chat_id, first_name, username, last_name)
+    # menu buttons
+    keyboard = [
+        [KeyboardButton('🛒 Buy'), KeyboardButton('📦 Order')],
+        [KeyboardButton('📝 About'), KeyboardButton('📞 Contact')],
+    ]
     # send message
     if result:
-        update.message.reply_text(f'Hi {first_name}! Welcome to our bot!')
+        update.message.reply_text(f'Hi {first_name}! Welcome to our bot!', reply_markup=ReplyKeyboardMarkup(keyboard, resize_keyboard=True))
     else:
-        update.message.reply_text(f'Hi {first_name}! Welcome back!')
+        update.message.reply_text(f'Hi {first_name}! Welcome back!', reply_markup=ReplyKeyboardMarkup(keyboard, resize_keyboard=True))
