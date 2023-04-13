@@ -56,20 +56,16 @@ def contact(update: Update, context):
 
 def contact_callback(update: Update, context):
     '''Contact callback handler'''
-    # inline keyboard
-    inline_keyboard = [
-        [   
-            InlineKeyboardButton('📞Phone', callback_data='phone-number'), 
-            InlineKeyboardButton('📧Email', callback_data='email-address')
-        ],
-        [
-            InlineKeyboardButton('📍Location', callback_data='location'),
-            InlineKeyboardButton('🎯Address', callback_data='address')
-        ]
-    ]
     # get callback data
     query = update.callback_query
     data = query.data
     # send message
     if data == 'phone-number':
         query.edit_message_text(text='Phone number: 998 90 123 45 67')
+    elif data == 'email-address':
+        query.edit_message_text(text='Email: example@gmail.com')
+    elif data == 'location':
+        query.delete_message()
+        context.bot.send_location(chat_id=query.message.chat_id, latitude=41.311081, longitude=69.240562)
+    elif data == 'address':
+        query.edit_message_text(text='Address: Tashkent, Uzbekistan')
