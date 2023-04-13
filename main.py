@@ -32,3 +32,9 @@ def about(update: Update, context):
     '''About command handler'''
     # send message
     update.message.reply_text('This is a bot for buying products from different companies.')
+
+
+def contact(update: Update, context):
+    '''Contact command handler'''
+    # send message
+    pass 
