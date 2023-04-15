@@ -106,7 +106,7 @@ def brand_callback(update: Update, context):
         # menu inline menu
         inline_keyboard = []
         for product in products:
-            inline_keyboard.append([InlineKeyboardButton(text=product['name'], callback_data=f'product:{product.doc_id}')])
+            inline_keyboard.append([InlineKeyboardButton(text=product['name'], callback_data=f'product:{product.doc_id}:{brand}')])
         # close button
         inline_keyboard.append([InlineKeyboardButton('🔙Back', callback_data=f'product:back')])
         # send message
@@ -130,3 +130,12 @@ def product_callback(update: Update, context: CallbackContext):
         inline_keyboard.append([InlineKeyboardButton('❌ Close', callback_data='brand:close')])
 
         query.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(inline_keyboard))
+        return
+
+    product_id = data.split(':')[1]
+    brand = data.split(':')[-1]
+    product = productdb.get_product(brand, product_id)
+
+    query.bot.send_photo(query.from_user.id, product['img_url'], caption=f'name: {product["name"]}\ncompany: {product["company"]}\ncolor: {product["color"]}\nram: {product["RAM"]}\nmemory: {product["memory"]}\nprice: {product["price"]}')
+
+    
