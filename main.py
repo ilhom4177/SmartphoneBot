@@ -140,7 +140,7 @@ def product_callback(update: Update, context: CallbackContext):
         query.from_user.id, 
         product['img_url'], 
         caption=f'name: {product["name"]}\ncompany: {product["company"]}\ncolor: {product["color"]}\nram: {product["RAM"]}\nmemory: {product["memory"]}\nprice: {product["price"]}',
-        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('<-- Back', callback_data='<-- Back'), InlineKeyboardButton('X', callback_data=f'X'), InlineKeyboardButton('--> Next', callback_data='--> Next')], [InlineKeyboardButton('🛒 Buy', callback_data=f'cart:{product_id}:{brand}')]])
+        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('<-- Back', callback_data='<-- Back'), InlineKeyboardButton('X', callback_data=f'X'), InlineKeyboardButton('--> Next', callback_data='--> Next')], [InlineKeyboardButton('Add', callback_data=f'cart:{product_id}:{brand}')]])
     )
 
 
@@ -155,3 +155,30 @@ def cart_callback(update: Update, context: CallbackContext):
     userdb.add_order(query.from_user.id, product_id, brand)
 
     query.answer('Added to cart')
+
+
+def order(update: Update, context: CallbackContext):
+    '''Order command handler'''
+    # get all orders from db
+    orders = userdb.get_orders(update.message.chat.id)
+    # menu inline menu
+    inline_keyboard = []
+    report = ''
+    i = 1
+    for order in orders:
+        product = productdb.get_product(order['company'], order['product_id'])
+        report += f'{i}. {product["name"]}\ncount: {order["quantity"]}\ntotal price: {order["quantity"] * product["price"]}\n\n'
+        i += 1
+    if report == '':
+        report = 'Your cart is empty'
+    update.message.reply_text(report, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('🛒 Buy', callback_data='purchase')], [InlineKeyboardButton('Clear', callback_data='clear')]]))
+
+
+def clear(update: Update, context: CallbackContext):
+    '''handle clear button'''
+    query = update.callback_query
+    data = query.data
+
+    userdb.clear_order(query.from_user.id)
+
+    query.answer('Cleared')

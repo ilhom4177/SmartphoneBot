@@ -61,18 +61,5 @@
             "last_name": "Abdurasulov"
         }
     },
-    "Order": {
-        "19": {
-            "chat_id": 5575549228,
-            "product_id": "23",
-            "company": "Vivo",
-            "quantity": 6
-        },
-        "20": {
-            "chat_id": 5575549228,
-            "product_id": "14",
-            "company": "Vivo",
-            "quantity": 2
-        }
-    }
+    "Order": {}
 }
