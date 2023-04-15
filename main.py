@@ -5,6 +5,9 @@ from telegram import (
     InlineKeyboardButton,
     InlineKeyboardMarkup,
 )
+from telegram.ext import (
+    CallbackContext,
+)
 from db import UserDb, ProductDB
 
 userdb = UserDb()
@@ -82,6 +85,37 @@ def buy(update: Update, context):
         inline_keyboard.append([InlineKeyboardButton(text=brand, callback_data=f'brand:{brand}')])
     
     # close button
-    inline_keyboard.append([InlineKeyboardButton('❌ Close', callback_data='close')])
+    inline_keyboard.append([InlineKeyboardButton('❌ Close', callback_data='brand:close')])
     # send message
     update.message.reply_text('Choose a brand:', reply_markup=InlineKeyboardMarkup(inline_keyboard))
+
+
+def brand_callback(update: Update, context):
+    '''Brand callback handler'''
+    # get callback data
+    query = update.callback_query
+    data = query.data
+    # send message
+    if data == 'brand:close':
+        query.edit_message_text(text='Menu closed')
+    else:
+        brand = data.split(':')[1]
+        # get all products from db
+        products = productdb.get_product_by_brand(brand)
+        # menu inline menu
+        inline_keyboard = []
+        for product in products:
+            inline_keyboard.append([InlineKeyboardButton(text=product['name'], callback_data=f'product:{product.doc_id}')])
+        # close button
+        inline_keyboard.append([InlineKeyboardButton('❌ Close', callback_data='product:close')])
+        # send message
+        query.edit_message_text(text=f'Choose a {brand} product:', reply_markup=InlineKeyboardMarkup(inline_keyboard))
+
+
+def product_callback(update: Update, context: CallbackContext):
+    '''handle product buttun'''
+    query = update.callback_query
+    data = query.data
+
+    if data == 'product:close':
+        query.edit_message_text(text='products closed')
