@@ -75,7 +75,7 @@ def contact_callback(update: Update, context):
         query.edit_message_text(text='Address: Tashkent, Uzbekistan')
 
 
-def buy(update: Update, context):
+def buy(update: Update, context: CallbackContext):
     '''Buy command handler'''
     # get all brands from db
     brands = productdb.get_brand()
@@ -87,7 +87,8 @@ def buy(update: Update, context):
     # close button
     inline_keyboard.append([InlineKeyboardButton('❌ Close', callback_data='brand:close')])
     # send message
-    update.message.reply_text('Choose a brand:', reply_markup=InlineKeyboardMarkup(inline_keyboard))
+    context.bot.send_message(update.message.chat.id, 'Choose a brand:', reply_markup=InlineKeyboardMarkup(inline_keyboard))
+
 
 
 def brand_callback(update: Update, context):
@@ -107,7 +108,7 @@ def brand_callback(update: Update, context):
         for product in products:
             inline_keyboard.append([InlineKeyboardButton(text=product['name'], callback_data=f'product:{product.doc_id}')])
         # close button
-        inline_keyboard.append([InlineKeyboardButton('❌ Close', callback_data='product:close')])
+        inline_keyboard.append([InlineKeyboardButton('🔙Back', callback_data=f'product:back')])
         # send message
         query.edit_message_text(text=f'Choose a {brand} product:', reply_markup=InlineKeyboardMarkup(inline_keyboard))
 
@@ -117,5 +118,15 @@ def product_callback(update: Update, context: CallbackContext):
     query = update.callback_query
     data = query.data
 
-    if data == 'product:close':
-        query.edit_message_text(text='products closed')
+    if data == 'product:back':
+        # get all brands from db
+        brands = productdb.get_brand()
+        # menu inline menu
+        inline_keyboard = []
+        for brand in brands:
+            inline_keyboard.append([InlineKeyboardButton(text=brand, callback_data=f'brand:{brand}')])
+        
+        # close button
+        inline_keyboard.append([InlineKeyboardButton('❌ Close', callback_data='brand:close')])
+
+        query.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(inline_keyboard))
