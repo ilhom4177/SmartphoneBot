@@ -136,6 +136,22 @@ def product_callback(update: Update, context: CallbackContext):
     brand = data.split(':')[-1]
     product = productdb.get_product(brand, product_id)
 
-    query.bot.send_photo(query.from_user.id, product['img_url'], caption=f'name: {product["name"]}\ncompany: {product["company"]}\ncolor: {product["color"]}\nram: {product["RAM"]}\nmemory: {product["memory"]}\nprice: {product["price"]}')
+    query.bot.send_photo(
+        query.from_user.id, 
+        product['img_url'], 
+        caption=f'name: {product["name"]}\ncompany: {product["company"]}\ncolor: {product["color"]}\nram: {product["RAM"]}\nmemory: {product["memory"]}\nprice: {product["price"]}',
+        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('<-- Back', callback_data='<-- Back'), InlineKeyboardButton('X', callback_data=f'X'), InlineKeyboardButton('--> Next', callback_data='--> Next')], [InlineKeyboardButton('🛒 Buy', callback_data=f'cart:{product_id}:{brand}')]])
+    )
+
+
+def cart_callback(update: Update, context: CallbackContext):
+    '''handle cart button'''
+    query = update.callback_query
+    data = query.data
 
     
+    product_id = data.split(':')[1]
+    brand = data.split(':')[-1]
+    userdb.add_order(query.from_user.id, product_id, brand)
+
+    query.answer('Added to cart')

@@ -11,7 +11,68 @@
             "first_name": "codeacademy",
             "username": "codeacademy_admin",
             "last_name": null
+        },
+        "7": {
+            "chat_id": 1380674728,
+            "first_name": "Qobiljon",
+            "username": "Qobiljon_Oblaqulov",
+            "last_name": "Oblaqulov"
+        },
+        "8": {
+            "chat_id": 1432402481,
+            "first_name": "Davron",
+            "username": "Davron0311",
+            "last_name": "Do'stqobilov"
+        },
+        "9": {
+            "chat_id": 1477817763,
+            "first_name": "Ja'far Xasan o'g'li",
+            "username": null,
+            "last_name": null
+        },
+        "10": {
+            "chat_id": 1698951222,
+            "first_name": "Anasxon",
+            "username": "U1_UXdesigner",
+            "last_name": "A'zamov"
+        },
+        "11": {
+            "chat_id": 2007510369,
+            "first_name": "DIYORBEK",
+            "username": "Diyorbek_0086",
+            "last_name": "BAXSHULLAYEV"
+        },
+        "12": {
+            "chat_id": 620642951,
+            "first_name": "AZIZBEK",
+            "username": "kamhf",
+            "last_name": null
+        },
+        "13": {
+            "chat_id": 5489204813,
+            "first_name": "NURBEK",
+            "username": "NurbekSaitqulov",
+            "last_name": null
+        },
+        "14": {
+            "chat_id": 1503632278,
+            "first_name": "Olqar",
+            "username": "Olqar",
+            "last_name": "Abdurasulov"
         }
     },
-    "Order": {}
+    "Order": {
+        "19": {
+            "chat_id": 5575549228,
+            "product_id": "23",
+            "company": "Vivo",
+            "quantity": 6
+        },
+        "20": {
+            "chat_id": 5575549228,
+            "product_id": "14",
+            "company": "Vivo",
+            "quantity": 2
+        }
+    }
 }
